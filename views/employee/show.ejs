@@ -1,0 +1,61 @@
+<% layout('layout/biolerplate')%>
+
+
+    <div class="card mb-4">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Employee Name : <%= employee.name %>
+                    </h5>
+                    <h6>Reviews</h6>
+
+                    <% for(let review of employee.reviews){%>
+                        <div class="mb-3 card">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-3 text-muted">By <%= review.owner.username %>
+                                </h6>
+
+                                <p class="card-text">Review: <%=review.review%>
+                                </p>
+                                <% if(currentUser && review.owner.equals(currentUser)){%>
+                                    <form action="/employees/<%=employee._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                        method="POST">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+                        <%}%>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <form action="/employees/<%=employee._id%>/reviews" method="POST" class="mb-auto">
+
+        <div class="mb-3">
+            <label class="form-label" for="reviews">Add reviews</label>
+            <textarea class="form-control" name="reviews" id="reviews" cols="30" rows="1" required></textarea>
+            <div class="valid-feedback">
+                looks good
+            </div>
+        </div>
+        <button class="btn btn-success">Submit reviews</button>
+    </form>
+    </div>
+
+
+
+
+    </div>
+    <form class="d-inline" action="/employee/<%=employee._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">Delete Employee</button>
+    </form>
+    <form class="d-inline" action="/employees/<%=employee._id%>/edit">
+        <button class="btn btn-info">Edit Employee</button>
+    </form>
+    <form class="d-inline" action="/employees">
+        <button class="btn btn-info">ALL Employees</button>
+    </form>

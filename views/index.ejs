@@ -1,0 +1,34 @@
+<% layout('layout/biolerplate')%>
+
+
+    <% for(let employee of employees) {%>
+        <div class="card mb-6">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Name : <%= employee.name %>
+                        </h5>
+
+                        <p class="card-text">
+                            Office Location : <%= employee.officeLoc %>
+                        </p>
+                        <p class="card-text">
+                            <a class="btn btn-primary" href="/employees/<%= employee._id %>">View</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <% } %>
+
+            <form class="d-inline" action="/employees/new">
+                <button class="btn btn-info">Add Employees</button>
+            </form>
