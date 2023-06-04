@@ -74,8 +74,9 @@ passport.deserializeUser(User.deserializeUser());
 
 const PORT = process.env.PORT || 3000
 
-app.get('/', (req, res) => {
-    res.render('home')
+app.get('/', async (req, res) => {
+    const employees = await Employee.find({});
+    res.render('index', { employees })
 })
 
 app.get('/employees', async (req, res) => {
