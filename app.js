@@ -72,6 +72,8 @@ app.use((req, res, next) => {
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+const PORT = process.env.PORT || 3000
+
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -168,6 +170,6 @@ app.delete('/employee/:id', async (req, res) => {
 
 })
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("serving n port 3000")
 })
